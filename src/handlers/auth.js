@@ -1,7 +1,7 @@
 import { register } from "../services/auth.js";
 import Router from "express";
-import { createUserValidator } from "../validators/user.js";
-import { useValidator } from "../middlewares/validator.js";
+//import { createUserValidator } from "../validators/user.js";
+//import { useValidator } from "../middlewares/validator.js";
 
 const AUTH_ROUTER = Router();
 AUTH_ROUTER.post("/register",
@@ -16,8 +16,7 @@ AUTH_ROUTER.post("/register",
   }
 );
 
-AUTH_ROUTER.post(
-  "/login",
+AUTH_ROUTER.post("/login",
   //useValidator (loginvalidator),
   async (req, res, next) => {
     try {
