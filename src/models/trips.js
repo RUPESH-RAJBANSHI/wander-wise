@@ -1,0 +1,61 @@
+import { Schema, model } from "mongoose";
+
+const ExpenseSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    amount: {
+        type: Number,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+});
+
+const BudgetSchema = new Schema({
+    total:{
+        type: Number,
+        required: true,
+    },
+    expences: [ExpenseSchema],
+});
+
+const TripSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,        
+    },
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    startDate: {
+        type: Date,
+        required: true,
+    },
+    endDate: {
+        type: Date,
+        required: true,
+    },
+    destination:[
+     {
+        type: String,
+        required: true,
+        trim: true,
+    },  
+],
+    budget: BudgetSchema,
+    });
+
+    const Trip = model("Trip", TripSchema);
+    export default Trip;

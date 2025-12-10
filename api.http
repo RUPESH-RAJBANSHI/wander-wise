@@ -1,0 +1,47 @@
+@BASE_URL = http://localhost:3000
+
+### Create a new user
+POST {{BASE_URL}}/users
+Content-Type: application/json
+
+{
+    "name": "Rupesh Rajbanshi",
+    "email": "rupesh.rajbanshi@example.com",
+    "password": "password"
+}
+
+### Get all users
+GET {{BASE_URL}}/users
+
+### Get user by id
+GET {{BASE_URL}}/users/691af6ce679594af902955ed
+
+### Update user by id
+PATCH {{BASE_URL}}/users/691b00adc7abc32e2e5f4044
+Content-Type: application/json
+
+{
+    "email": "rupesh.rajbashi@example.com"
+}
+
+### Delete user by id
+DELETE {{BASE_URL}}/users/691b00adc7abc32e2e5f4044
+
+### Register a new user
+POST {{BASE_URL}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe7@example.com",
+  "password": "password"
+}
+
+### Login a user
+POST {{BASE_URL}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john.doe7@example.com",
+  "password": "password"
+}
