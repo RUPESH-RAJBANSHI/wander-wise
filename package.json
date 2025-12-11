@@ -2,15 +2,23 @@
   "name": "wander-wise",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/RUPESH-RAJBANSHI/wander-wise#readme",
+  "bugs": {
+    "url": "https://github.com/RUPESH-RAJBANSHI/wander-wise/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RUPESH-RAJBANSHI/wander-wise.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "dotenvx run -- node src/index.js",
     "dev": "dotenvx run -- nodemon src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@dotenvx/dotenvx": "^1.51.1",
     "bcrypt": "^6.0.0",
