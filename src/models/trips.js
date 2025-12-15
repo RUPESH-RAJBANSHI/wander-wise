@@ -1,61 +1,65 @@
 import { Schema, model } from "mongoose";
 
 const ExpenseSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    amount: {
-        type: Number,
-        required: true,
-    },
-    date: {
-        type: Date,
-        required: true,
-    },
+  name: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
 });
 
 const BudgetSchema = new Schema({
-    total:{
-        type: Number,
-        required: true,
-    },
-    expences: [ExpenseSchema],
+  total: {
+    type: Number,
+    required: true,
+  },
+  spend: {
+    type: Number,
+    default: 0,
+  },
+  expences: [ExpenseSchema],
 });
 
 const TripSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,        
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: true,
+  },
+  destination: [
+    {
+      type: String,
+      required: true,
+      trim: true,
     },
-    title: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    description: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    startDate: {
-        type: Date,
-        required: true,
-    },
-    endDate: {
-        type: Date,
-        required: true,
-    },
-    destination:[
-     {
-        type: String,
-        required: true,
-        trim: true,
-    },  
-],
-    budget: BudgetSchema,
-    });
+  ],
+  budget: BudgetSchema,
+});
 
-    const Trip = model("Trip", TripSchema);
-    export default Trip;
+const Trip = model("Trip", TripSchema);
+export default Trip;

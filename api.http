@@ -1,4 +1,6 @@
 @BASE_URL = http://localhost:3000
+@userId = 691af6ce679594af902955ed
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTMyYjAyNGIwYzI2MmRmNDM2NDJiZmIiLCJpYXQiOjE3NjU3MDcyMjksImV4cCI6MTc2NTc5MzYyOX0.X8veBEKlIjxTk3IeGoeBb2w6lkGy50BTyzRenXuBjZs
 
 ### Create a new user
 POST {{BASE_URL}}/users
@@ -21,7 +23,7 @@ PATCH {{BASE_URL}}/users/691b00adc7abc32e2e5f4044
 Content-Type: application/json
 
 {
-    "email": "rupesh.rajbashi@example.com"
+    "email": "rupesh.rajbanshi@example.com"
 }
 
 ### Delete user by id
@@ -32,8 +34,8 @@ POST {{BASE_URL}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "john.doe7@example.com",
+  "name": "Rupesh Rajbanshi",
+  "email": "rajbanshi.rupesh@example.com",
   "password": "password"
 }
 
@@ -44,4 +46,19 @@ Content-Type: application/json
 {
   "email": "john.doe7@example.com",
   "password": "password"
+}
+
+###Create a new trip
+POST {{BASE_URL}}/trips
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Trip to the moon",
+  "startDate": "2025-12-15",
+  "endDate": "2025-12-16",
+  "budget": {
+    "total": 1000,
+  },
+  "destinations": ["Moon", "Mars", "jupiter"]
 }
