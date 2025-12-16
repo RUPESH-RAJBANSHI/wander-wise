@@ -10,7 +10,7 @@ import {
   createUserValidator,
   updateUserValidator,
 } from "../validators/user.js";
-import useValidator from "../middlewares/usevalidator.js";
+import useValidator from "../middlewares/useValidator.js";
 
 const USER_ROUTER = Router();
 

@@ -1,12 +1,12 @@
 import Router from "express";
-import useValidator from "../middlewares/usevalidator.js";
+import useValidator from "../middlewares/useValidator.js";
 import { register, login } from "../services/auth.js";
 import { createUserValidator } from "../validators/user.js";
 import { loginValidator } from "../validators/auth.js";
 
-
 const AUTH_ROUTER = Router();
-AUTH_ROUTER.post("/register",
+AUTH_ROUTER.post(
+  "/register",
   useValidator(createUserValidator),
   async (req, res, next) => {
     try {
@@ -18,7 +18,8 @@ AUTH_ROUTER.post("/register",
   }
 );
 
-AUTH_ROUTER.post("/login",
+AUTH_ROUTER.post(
+  "/login",
   useValidator(loginValidator),
   async (req, res, next) => {
     try {
