@@ -29,6 +29,19 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+userSchema.pre("save", async function () {
+  if (this.isModified("password")) {
+    this.password = await hash(this.password, 10);
+  }
+});
+
+// Ensure password is hashed on update operations as well
+userSchema.pre("findOneAndUpdate", async function () {
+  if (this.getUpdate().password) {
+    this.getUpdate().password = await hash(this.getUpdate().password, 10);
+  }
+});
+
 const User = mongoose.model("User", userSchema);
 
 export default User;

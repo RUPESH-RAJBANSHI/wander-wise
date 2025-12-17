@@ -1,5 +1,5 @@
 import Router from "express";
-import useValidator from "../middlewares/useValidator.js";
+import useValidator from "../middlewares/usevalidator.js";
 import { register, login } from "../services/auth.js";
 import { createUserValidator } from "../validators/user.js";
 import { loginValidator } from "../validators/auth.js";

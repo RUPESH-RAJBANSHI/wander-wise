@@ -62,13 +62,10 @@ const TripSchema = new Schema({
 });
 
 TripSchema.pre("findOneAndUpdate", function () {
-  if (this.getUpdate().budget) {
-    this.getUpdate().budget.spent +=
-      this.getUpdate().budget?.expenses?.reduce(
-        (acc, expense) => acc + expense.amount,
-        0
-      ) || 0;
-    this.getUpdate().budget.expenses?.map((expense) => {
+  const expenses = this.getUpdate().budget?.expenses;
+  if (expenses?.length) {
+    expenses.reduce((acc, expense) => acc + expense.amount, 0) || 0;
+    expenses.map((expense) => {
       expense.date = new Date();
     });
   }
