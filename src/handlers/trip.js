@@ -10,7 +10,7 @@ import {
   createTripValidator,
   updateTripValidator,
 } from "../validators/trip.js";
-import useValidator from "../middlewares/useValidator.js";
+import useValidator from "../middlewares/usevalidator.js";
 
 const TRIP_ROUTER = Router();
 

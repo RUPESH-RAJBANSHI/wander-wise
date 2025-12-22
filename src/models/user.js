@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
+import { hash } from "bcrypt";
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new Schema(
   {
     name: {
       type: String,
@@ -24,24 +25,25 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-     
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-userSchema.pre("save", async function () {
+UserSchema.pre("save", async function () {
   if (this.isModified("password")) {
     this.password = await hash(this.password, 10);
   }
 });
 
 // Ensure password is hashed on update operations as well
-userSchema.pre("findOneAndUpdate", async function () {
+UserSchema.pre("findOneAndUpdate", async function () {
   if (this.getUpdate().password) {
     this.getUpdate().password = await hash(this.getUpdate().password, 10);
   }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", UserSchema);
 
 export default User;

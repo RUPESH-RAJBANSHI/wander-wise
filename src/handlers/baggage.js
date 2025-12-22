@@ -13,7 +13,7 @@ import {
   updateBagaggeValidator,
 } from "../validators/baggage.js";
 
-const BAGGAGE_ROUTER = Router();
+const BAGGAGE_ROUTER = Router({mergeParams: true});
 
 BAGGAGE_ROUTER.post(
   "/",

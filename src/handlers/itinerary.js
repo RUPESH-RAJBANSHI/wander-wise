@@ -6,13 +6,13 @@ import {
   updateItinerary,
   deleteItinerary,
 } from "../services/itinerary.js";
-import { useValidator } from "../middlewares/validator.js";
+import useValidator from "../middlewares/usevalidator.js";
 import {
   createItineraryValidator,
   updateItineraryValidator,
 } from "../validators/itinerary.js";
 
-const ITINERARY_ROUTER = Router();
+const ITINERARY_ROUTER = Router({mergeParams: true});
 
 ITINERARY_ROUTER.post(
   "/",
@@ -82,3 +82,5 @@ ITINERARY_ROUTER.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+export default ITINERARY_ROUTER;

@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import express from "express";
 import connectDB from "./config/db.js";
 import HANDLERS from "./handlers/index.js";
@@ -16,7 +18,7 @@ SERVER.get("/", (req, res) => {
 });
 
 SERVER.use(express.json());
-SERVER.use(authMiddleware);
+//SERVER.use(authMiddleware);
 SERVER.use("/", HANDLERS);
 SERVER.use(errorMiddleware);
 

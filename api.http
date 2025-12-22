@@ -1,6 +1,7 @@
 @BASE_URL = http://localhost:3000
-@userId = 691af6ce679594af902955ed
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTMyYjAyNGIwYzI2MmRmNDM2NDJiZmIiLCJpYXQiOjE3NjU3MDcyMjksImV4cCI6MTc2NTc5MzYyOX0.X8veBEKlIjxTk3IeGoeBb2w6lkGy50BTyzRenXuBjZs
+//@userId = 691af6ce679594af902955ed
+@userId = 694769a0b3c4a0fb949d7263
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ3N2QyNmY0MDE3YTY4NDNiMTk4Y2IiLCJpYXQiOjE3NjYzNzQ3MTMsImV4cCI6MTc2NjQ2MTExM30.qJv1VjN7ctf1FKC47CY8wsmjjOrY8Ot-jJwtC49OyuM
 
 ### Create a new user
 POST {{BASE_URL}}/users
@@ -8,7 +9,7 @@ Content-Type: application/json
 
 {
     "name": "Rupesh Rajbanshi",
-    "email": "rupesh.rajbanshi@example.com",
+    "email": "rupesh.raj@example.com",
     "password": "password"
 }
 
@@ -16,10 +17,11 @@ Content-Type: application/json
 GET {{BASE_URL}}/users
 
 ### Get user by id
-GET {{BASE_URL}}/users/691af6ce679594af902955ed
+GET {{BASE_URL}}/users/69477d26f4017a6843b198cb
 
 ### Update user by id
-PATCH {{BASE_URL}}/users/691b00adc7abc32e2e5f4044
+PATCH {{BASE_URL}}/users/69477d26f4017a6843b198cb
+
 Content-Type: application/json
 
 {
@@ -27,7 +29,7 @@ Content-Type: application/json
 }
 
 ### Delete user by id
-DELETE {{BASE_URL}}/users/691b00adc7abc32e2e5f4044
+DELETE {{BASE_URL}}/users/694769a0b3c4a0fb949d7263
 
 ### Register a new user
 POST {{BASE_URL}}/auth/register
@@ -35,7 +37,7 @@ Content-Type: application/json
 
 {
   "name": "Rupesh Rajbanshi",
-  "email": "rajbanshi.rupesh@example.com",
+  "email": "rajbanshi@example.com",
   "password": "password"
 }
 
@@ -44,7 +46,7 @@ POST {{BASE_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "john.doe7@example.com",
+  "email": "rajbanshi@example.com",
   "password": "password"
 }
 
@@ -58,7 +60,7 @@ Authorization: Bearer {{token}}
   "startDate": "2025-12-15",
   "endDate": "2025-12-16",
   "budget": {
-    "total": 1000,
+    "total": 1000
   },
-  "destinations": ["Moon", "Mars", "jupiter"]
+  "destinations": ["Moon", "Mars", "Jupiter"]
 }

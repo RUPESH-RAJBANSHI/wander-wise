@@ -18,12 +18,38 @@ const createUser = async (userData) => {
   return userWithoutPassword;
 };
 
-const findAllUsers = async () => {
-  const users = await User.find({}, { password: 0 });
-  if (!users) {
-    throw new NotFoundError(" users not found");
+const findAllUsers = async (query) => {
+  const {
+    page = 1,
+    limit = 10,
+    search = "",
+    sort = "createdAt",
+    order = "desc",
+  } = query;
+
+  let where = {};
+
+  if (search) {
+    where.$or = [
+      { name: { $regex: search, $options: "i" } },
+      { email: { $regex: search, $options: "i" } },
+    ];
   }
-  return users;
+
+  const total = await User.countDocuments(where);
+  const totalPages = Math.ceil(total / limit);
+
+  const users = await User.find(where)
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .sort({ [sort]: order });
+
+  return {
+    users,
+    total,
+    limit: +limit,
+    totalPages,
+  };
 };
 
 const findUserById = async (id, res) => {

@@ -10,7 +10,7 @@ import {
   createUserValidator,
   updateUserValidator,
 } from "../validators/user.js";
-import useValidator from "../middlewares/useValidator.js";
+import useValidator from "../middlewares/usevalidator.js";
 
 const USER_ROUTER = Router();
 
@@ -29,7 +29,7 @@ USER_ROUTER.post(
 
 USER_ROUTER.get("/", async (req, res) => {
   try {
-    const users = await findAllUsers();
+    const users = await findAllUsers(req.query);
     res.status(200).json(users);
   } catch (error) {
     next(error);
