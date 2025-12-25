@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const publicRoutes = ["/auth/login", "/auth/register"];
+const publicRoutes = ["/auth/login", "/auth/register","/users"];
 
 export const authMiddleware = (req, res, next) => {
   if (publicRoutes.includes(req.path)) {
@@ -11,6 +11,6 @@ export const authMiddleware = (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  req.payload = { id: decoded.userId };
+  req.user = { id: decoded.userId };
   next();
 };

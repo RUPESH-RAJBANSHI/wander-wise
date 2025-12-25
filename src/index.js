@@ -13,12 +13,12 @@ connectDB()
   .catch(() => {})
   .finally(() => {});
 
-SERVER.get("/", (req, res) => {
+SERVER.get("/", (req, res,) => {
   res.send("Wander Wise");
 });
 
 SERVER.use(express.json());
-//SERVER.use(authMiddleware);
+SERVER.use(authMiddleware);
 SERVER.use("/", HANDLERS);
 SERVER.use(errorMiddleware);
 

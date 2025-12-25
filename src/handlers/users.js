@@ -27,7 +27,7 @@ USER_ROUTER.post(
   }
 );
 
-USER_ROUTER.get("/", async (req, res) => {
+USER_ROUTER.get("/", async (req, res, next) => {
   try {
     const users = await findAllUsers(req.query);
     res.status(200).json(users);
@@ -36,7 +36,7 @@ USER_ROUTER.get("/", async (req, res) => {
   }
 });
 
-USER_ROUTER.get("/:id", async (req, res) => {
+USER_ROUTER.get("/:id", async (req, res, next) => {
   try {
     const user = await findUserById(req.params.id);
     res.status(200).json(user);
@@ -48,7 +48,7 @@ USER_ROUTER.get("/:id", async (req, res) => {
 USER_ROUTER.patch(
   "/:id",
   useValidator(updateUserValidator),
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const user = await updateUserById(req.params.id, req.body);
       res.status(200).json(user);
@@ -58,7 +58,7 @@ USER_ROUTER.patch(
   }
 );
 
-USER_ROUTER.delete("/:id", async (req, res) => {
+USER_ROUTER.delete("/:id", async (req, res, next) => {
   try {
     const user = await deleteUserById(req.params.id);
     res.status(200).json(user);

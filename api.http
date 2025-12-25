@@ -1,7 +1,8 @@
 @BASE_URL = http://localhost:3000
-//@userId = 691af6ce679594af902955ed
+
 @userId = 694769a0b3c4a0fb949d7263
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ3N2QyNmY0MDE3YTY4NDNiMTk4Y2IiLCJpYXQiOjE3NjYzNzQ3MTMsImV4cCI6MTc2NjQ2MTExM30.qJv1VjN7ctf1FKC47CY8wsmjjOrY8Ot-jJwtC49OyuM
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ3N2QyNmY0MDE3YTY4NDNiMTk4Y2IiLCJpYXQiOjE3NjY2NjgwNDgsImV4cCI6MTc2Njc1NDQ0OH0.5eVeve_YTM-YDWzv-Df1p4qARKrthcJrj_DB6QosIHI
 
 ### Create a new user
 POST {{BASE_URL}}/users
@@ -17,10 +18,10 @@ Content-Type: application/json
 GET {{BASE_URL}}/users
 
 ### Get user by id
-GET {{BASE_URL}}/users/69477d26f4017a6843b198cb
+GET {{BASE_URL}}/users/694d5f1eeea2de81f6e5d7a8
 
 ### Update user by id
-PATCH {{BASE_URL}}/users/69477d26f4017a6843b198cb
+PATCH {{BASE_URL}}/users/694d5f1eeea2de81f6e5d7a8
 
 Content-Type: application/json
 
@@ -36,8 +37,8 @@ POST {{BASE_URL}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Rupesh Rajbanshi",
-  "email": "rajbanshi@example.com",
+  "name": "Ismit Khan",
+  "email": "ismit12@example.com",
   "password": "password"
 }
 
@@ -46,21 +47,66 @@ POST {{BASE_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "rajbanshi@example.com",
+  "email": "Ismit Khan",
+  "email": "ismit12@example.com",
   "password": "password"
 }
 
-###Create a new trip
-POST {{BASE_URL}}/trips
+### auth login
+POST {{BASE_URL}}/auth/login
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
+  "name": "john",
+  "email": "rajbanshi@example.com",
+  "password": "password"
+}
+
+### Create a new trip
+POST {{BASE_URL}}/trips
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
   "title": "Trip to the moon",
+  "description": "A once-in-a-lifetime space journey",
   "startDate": "2025-12-15",
   "endDate": "2025-12-16",
   "budget": {
     "total": 1000
   },
   "destinations": ["Moon", "Mars", "Jupiter"]
+}
+
+
+### Get all trips
+GET {{BASE_URL}}/trips
+Authorization: Bearer {{token}}
+
+### Get a trip by id
+GET {{BASE_URL}}/trips/694d4633180936c03b9b0c57
+Authorization: Bearer {{token}}
+
+### Create a new baggage
+POST {{BASE_URL}}/694d4633180936c03b9b0c57/baggages
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Baggage 1"
+}
+
+### Invite collaborators to a trip
+POST {{BASE_URL}}/trips/694d46bc5be0b933e868dd20/invite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "collaboratorEmails": [
+    "rupesh.rajbanshi.1030@gmail.com",
+    "ramm38878@gmail.com",
+    "ganeshkhawas004@gmail.com",
+    "bishwassujan68@gmail.com"
+  ]
 }
