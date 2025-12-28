@@ -10,12 +10,21 @@ export const createTrip = async (tripData) => {
 };
 
 export const getTrips = async (userId) => {
-  const trips = await Trip.find({ user: userId });
+  const trips = await Trip.find({
+    $or: [{ user: userId }, { collaborators: userId }],
+  });
   return trips;
 };
 
 export const getTripById = async (id, userId) => {
-  const trip = await Trip.findOne({ _id: id, user: userId })
+  const trip = await Trip.findOne({
+    _id: id,
+    $and: [
+      {
+        $or: [{ user: userId }, { collaborators: userId }],
+      },
+    ],
+  })
     .populate("collaborators")
     .populate("user", "name");
   if (!trip) {
@@ -73,7 +82,9 @@ export const inviteCollaborator = async (id, userId, collaboratorEmails) => {
 
 export const acceptInvitation = async (token, userId) => {
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  const trip = await getTripById(decoded.tripId, userId);
+  const trip = await Trip.findOne({ _id: decoded.tripId }).populate(
+    "collaborators"
+  );
   if (!trip) {
     throw new NotFoundError("Trip not found");
   }

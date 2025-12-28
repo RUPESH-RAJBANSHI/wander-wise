@@ -24,7 +24,6 @@ GET {{BASE_URL}}/users/694d5f1eeea2de81f6e5d7a8
 PATCH {{BASE_URL}}/users/694d5f1eeea2de81f6e5d7a8
 
 Content-Type: application/json
-
 {
     "email": "rupesh.rajbanshi@example.com"
 }
