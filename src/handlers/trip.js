@@ -7,6 +7,7 @@ import {
   deleteTrip,
   inviteCollaborator,
   acceptInvitation,
+  addExpenses,
 } from "../services/trip.js";
 import {
   createTripValidator,
@@ -85,6 +86,15 @@ TRIP_ROUTER.post("/:id/invite", async (req, res, next) => {
 TRIP_ROUTER.get("/:id/invite/accept", async (req, res, next) => {
   try {
     const result = await acceptInvitation(req.query.token, req.user.id);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+TRIP_ROUTER.post("/expenses/:id", async (req, res, next) => {
+   try {
+    const result = await addExpenses(req.user.userId, req.params.id, req.body);
     res.status(200).json(result);
   } catch (error) {
     next(error);
