@@ -97,7 +97,7 @@ export const acceptInvitation = async (token, userId) => {
   }
   trip.collaborators.push(userId);
   await trip.save();
-  return { message: "Invitation accepted successfully" };
+  return { success: true, message: "Invitation accepted successfully" };
 };
 
 export const addExpenses = async (userId, tripId, expenseData) => {
