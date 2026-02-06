@@ -19,7 +19,7 @@ ITINERARY_ROUTER.post(
   useValidator(createItineraryValidator),
   async (req, res, next) => {
     try {
-      const itinerary = await createItinerary(req.body);
+      const itinerary = await createItinerary({...req.body, trip: req.params.tripId, user: req.user.id});
       res.status(201).json(itinerary);
     } catch (error) {
       next(error);
@@ -31,7 +31,7 @@ ITINERARY_ROUTER.get("/", async (req, res, next) => {
   try {
     const itineraries = await getAllItineraries(
       req.params.tripId,
-      req.user._id
+      req.user.id
     );
     res.json(itineraries);
   } catch (error) {

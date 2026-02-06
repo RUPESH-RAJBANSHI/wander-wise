@@ -7,8 +7,8 @@ export const createItinerary = async (itineraryData) => {
   const trip = await getTripById(itineraryData.trip, itineraryData.user);
 
   if (
-    new Date(itineraryData.date) > new Date(trip.startDate) ||
-    new Date(itineraryData.date) < new Date(trip.endDate)
+    new Date(itineraryData.date) < new Date(trip.startDate) ||
+    new Date(itineraryData.date) > new Date(trip.endDate)
   ) {
     throw new ValidationError("Itinerary date must be within the trip dates");
   }
@@ -33,11 +33,11 @@ export const getItineraryById = async (id, userId, tripId) => {
 };
 
 export const updateItinerary = async (id, userId, tripId, itineraryData) => {
-  await getTripById(tripId, userId);
+  const trip = await getTripById(tripId, userId);
 
   if (
-    new Date(itineraryData.date) > new Date(trip.startDate) ||
-    new Date(itineraryData.date) < new Date(trip.endDate)
+    new Date(itineraryData.date) < new Date(trip.startDate) ||
+    new Date(itineraryData.date) > new Date(trip.endDate)
   ) {
     throw new ValidationError("Itinerary date must be within the trip dates");
   }
